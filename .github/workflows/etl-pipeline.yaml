@@ -1,0 +1,34 @@
+name: Simple ETL
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  etl:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - run: pip install -r requirements.txt
+    
+    - run: python extract.py
+      env:
+        OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+    
+    - run: python transform.py
+    
+    - run: python load.py
+    
+    - uses: actions/upload-artifact@v3
+      with:
+        name: results
+        path: |
+          weather_output.csv
+          weather_summary.json
