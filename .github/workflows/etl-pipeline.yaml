@@ -20,7 +20,7 @@ jobs:
     
     - run: python extract.py
       env:
-        OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+        WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
     
     - run: python transform.py
     

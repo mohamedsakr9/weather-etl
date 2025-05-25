@@ -1,0 +1,4 @@
+city,temperature,humidity,temp_category
+London,18.0,42,Cold
+Paris,20.1,60,Hot
+Tokyo,18.4,94,Cold
